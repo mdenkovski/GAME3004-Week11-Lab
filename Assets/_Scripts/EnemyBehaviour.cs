@@ -40,6 +40,13 @@ public class EnemyBehaviour : MonoBehaviour
         {
             navMeshAgent.SetDestination(player.transform.position);
 
+            var distance = Vector3.Distance(player.transform.position, transform.position);
+            if ((controller) && (distance <= 3.0f))
+            {
+                transform.LookAt(new Vector3(player.transform.position.x, 0, player.transform.position.z));
+                controller.SetInteger("AnimState", (int)ZombieState.PUNCH);
+            }
+
         }
     }
 }
